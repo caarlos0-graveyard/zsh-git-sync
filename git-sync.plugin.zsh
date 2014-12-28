@@ -45,5 +45,5 @@ git-sync() {
   _merge_locally "$remote" "$branch"
   _push_to_fork "$remote" "$branch"
   _remove_merged
-  log "All done!"
+  _log "All done!"
 }
