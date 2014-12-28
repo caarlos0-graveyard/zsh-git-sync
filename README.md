@@ -13,3 +13,15 @@ antigen bundle caarlos0/zsh-git-sync
 ```sh
 git-sync
 ```
+
+Or, go ahead and alias it:
+
+```sh
+git config --global alias.sync '!zsh -ic git-sync'
+```
+
+Then
+
+```sh
+git sync
+```
