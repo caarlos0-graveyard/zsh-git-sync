@@ -38,7 +38,7 @@ _remove_merged() {
   done
 }
 
-sync() {
+git-sync() {
   local branch=$(git symbolic-ref --short HEAD)
   local remote=$(git remote | grep upstream || echo "origin")
   _prune "$remote"
