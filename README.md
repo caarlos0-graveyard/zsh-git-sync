@@ -2,6 +2,13 @@
 
 A zsh plugin to sync git repositories and clean them up.
 
+## Define `sync`
+
+- prune `origin` or `upstream`;
+- merge `upstream` into current branch;
+- push merged branch to fork (`origin`);
+- remove merged branches.
+
 ## Install
 
 ```sh
