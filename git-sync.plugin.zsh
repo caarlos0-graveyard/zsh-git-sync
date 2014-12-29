@@ -30,11 +30,16 @@ _push_to_fork() {
   fi
 }
 
+_nuke() {
+  git branch -d "$1" || true | _prefixed
+  git push origin :"$1" || true | _prefixed
+}
+
 _remove_merged() {
   _log "Removing merged branches..."
-  local merged_branches=$(git branch --merged | grep -v "^\*" | grep -v 'master')
-  for merged_branch in $merged_branches; do
-    "$ZSH"/bin/git-nuke "$merged_branch" | _prefixed
+  local merged="$(git branch --merged | grep -v "^\*" | grep -v 'master')"
+  echo "$merged" | while read branch; do
+    [[ "$branch" = "" ]] || _nuke "$branch"
   done
 }
 
