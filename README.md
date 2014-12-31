@@ -2,6 +2,8 @@
 
 A zsh plugin to sync git repositories and clean them up.
 
+![a gif showing zsh-git-sync in action](https://dl.dropboxusercontent.com/u/247142/projects/git-sync.mov.gif)
+
 ## Define `sync`
 
 - prune `origin` or `upstream`;
