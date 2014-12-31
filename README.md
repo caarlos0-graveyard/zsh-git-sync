@@ -34,3 +34,20 @@ Then
 ```sh
 git sync
 ```
+
+There is also a public `git-delete-local-merged` function which only deletes
+locally merged branches (part of the cleanup thing).
+
+Example:
+
+```sh
+git config --global alias.delete-local-merged '!zsh -ic git-delete-local-merged'
+```
+
+Then
+
+```sh
+git delete-local-merged
+```
+
+Have fun!

@@ -30,10 +30,10 @@ _push_to_fork() {
   fi
 }
 
-_remove_merged() {
+git-delete-local-merged() {
   _log "Removing merged branches..."
   local branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
-  [[ ! -z "$branches" ]] && git branch -d "$branches"
+  [[ ! -z "$branches" ]] && echo "$branches" | xargs git branch -d
 }
 
 git-sync() {
@@ -42,6 +42,6 @@ git-sync() {
   _prune "$remote"
   _merge_locally "$remote" "$branch"
   _push_to_fork "$remote" "$branch"
-  _remove_merged
+  git-delete-local-merged
   _log "All done!"
 }
