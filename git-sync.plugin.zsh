@@ -33,7 +33,7 @@ _push_to_fork() {
 _remove_merged() {
   _log "Removing merged branches..."
   local branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
-  [[ ! -z "$branches" ]] && git branch -d "$branches"
+  [[ ! -z "$branches" ]] && echo "$branches" | xargs git branch -d
 }
 
 git-sync() {
