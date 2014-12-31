@@ -30,17 +30,10 @@ _push_to_fork() {
   fi
 }
 
-_nuke() {
-  git branch -d "$1" || true | _prefixed
-  git push origin :"$1" || true | _prefixed
-}
-
 _remove_merged() {
   _log "Removing merged branches..."
-  local merged="$(git branch --merged | grep -v "^\*" | grep -v 'master')"
-  echo "$merged" | while read branch; do
-    [[ "$branch" = "" ]] || _nuke "$branch"
-  done
+  local branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
+  [[ ! -z "$branches" ]] && git branch -d "$branches"
 }
 
 git-sync() {
