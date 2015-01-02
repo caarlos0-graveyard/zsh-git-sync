@@ -45,3 +45,14 @@ git-sync() {
   git-delete-local-merged
   _log "All done!"
 }
+
+git-sync-all() {
+  local base_folder="$(pwd)"
+  find . -name .git -type d -prune | while read repo; do
+    local repo_folder="$base_folder/${repo%%.git}"
+    echo "Syncing $repo_folder..."
+    cd "$repo_folder"
+    git-sync "$repo_folder"
+  done
+  cd "$base_folder"
+}
