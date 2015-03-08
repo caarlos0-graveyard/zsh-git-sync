@@ -42,6 +42,7 @@ git-sync() {
   _prune "$remote"
   _merge_locally "$remote" "$branch"
   _push_to_fork "$remote" "$branch"
+  git branch -u "$remote"/"$branch"
   git-delete-local-merged
   _log "All done!"
 }
