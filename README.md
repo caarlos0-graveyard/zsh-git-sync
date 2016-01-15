@@ -13,8 +13,16 @@ A zsh plugin to sync git repositories and clean them up.
 
 ## Install
 
+### antibody
+
 ```sh
-antigen bundle caarlos0/zsh-git-sync
+$ antibody bundle caarlos0/zsh-git-sync
+```
+
+### antigen
+
+```sh
+$ antigen bundle caarlos0/zsh-git-sync
 ```
 
 ## Usage
