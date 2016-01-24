@@ -28,19 +28,19 @@ $ antigen bundle caarlos0/zsh-git-sync
 ## Usage
 
 ```sh
-git-sync
+$ git-sync
 ```
 
 Or, go ahead and alias it:
 
 ```sh
-git config --global alias.sync '!zsh -ic git-sync'
+$ git config --global alias.sync '!zsh -ic git-sync'
 ```
 
 Then
 
 ```sh
-git sync
+$ git sync
 ```
 
 There is also a public `git-delete-local-merged` function which only deletes
@@ -49,13 +49,13 @@ locally merged branches (part of the cleanup thing).
 Example:
 
 ```sh
-git config --global alias.delete-local-merged '!zsh -ic git-delete-local-merged'
+$ git config --global alias.delete-local-merged '!zsh -ic git-delete-local-merged'
 ```
 
 Then
 
 ```sh
-git delete-local-merged
+$ git delete-local-merged
 ```
 
 Have fun!

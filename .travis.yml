@@ -5,3 +5,4 @@ script:
   - ./build/build.sh
 notifications:
   email: false
+sudo: required

@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/bin/sh
 _log() {
-  echo -e "-----> $*"
+  echo "-----> $*"
 }
 
 _prefixed() {
@@ -8,22 +8,25 @@ _prefixed() {
 }
 
 _prune() {
-  local remote="$1"
+  local remote
+  remote="$1"
   _log "Pruning $remote..."
   git remote prune "$remote" | _prefixed
 }
 
 _merge_locally() {
-  local remote="$1"
-  local branch="$2"
+  local branch remote
+  remote="$1"
+  branch="$2"
   _log "Merging $remote/$branch locally..."
   git fetch "$remote" | _prefixed
   git merge "$remote/$branch" | _prefixed
 }
 
 _push_to_fork() {
-  local remote="$1"
-  local branch="$2"
+  local branch remote
+  remote="$1"
+  branch="$2"
   if ! [ "$remote" = "origin" ]; then
     _log "Pushing it to origin/$branch..."
     git push origin "$branch" | _prefixed
@@ -31,18 +34,20 @@ _push_to_fork() {
 }
 
 git-delete-local-merged() {
+  local branches
   _log "Removing merged branches..."
-  local branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
-  [[ ! -z "$branches" ]] && echo "$branches" | xargs git branch -d
+  branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
+  [ ! -z "$branches" ] && echo "$branches" | xargs git branch -d
 }
 
 git-sync() {
-  local branch=$(git symbolic-ref --short HEAD)
-  local remote=$(git remote | grep upstream || echo "origin")
+  local branch remote
+  branch=$(git symbolic-ref --short HEAD)
+  remote=$(git remote | grep upstream || echo "origin")
   _prune "$remote"
   _merge_locally "$remote" "$branch"
   _push_to_fork "$remote" "$branch"
-  git branch -u "$remote"/"$branch"
+  git branch -u "$remote/$branch"
   git-delete-local-merged
   _log "All done!"
 }
