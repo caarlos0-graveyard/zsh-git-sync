@@ -8,6 +8,7 @@ _prefixed() {
 }
 
 _prune() {
+  # shellcheck disable=SC2039
   local remote
   remote="$1"
   _log "Pruning $remote..."
@@ -15,6 +16,7 @@ _prune() {
 }
 
 _merge_locally() {
+  # shellcheck disable=SC2039
   local branch remote
   remote="$1"
   branch="$2"
@@ -24,6 +26,7 @@ _merge_locally() {
 }
 
 _push_to_fork() {
+  # shellcheck disable=SC2039
   local branch remote
   remote="$1"
   branch="$2"
@@ -33,14 +36,18 @@ _push_to_fork() {
   fi
 }
 
+# shellcheck disable=SC2039
 git-delete-local-merged() {
+  # shellcheck disable=SC2039
   local branches
   _log "Removing merged branches..."
   branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
   [ ! -z "$branches" ] && echo "$branches" | xargs git branch -d
 }
 
+# shellcheck disable=SC2039
 git-sync() {
+  # shellcheck disable=SC2039
   local branch remote
   branch=$(git symbolic-ref --short HEAD)
   remote=$(git remote | grep upstream || echo "origin")
