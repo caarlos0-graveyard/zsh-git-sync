@@ -15,31 +15,31 @@ A zsh plugin to sync git repositories and clean them up.
 
 ### antibody
 
-```sh
+```console
 $ antibody bundle caarlos0/zsh-git-sync
 ```
 
 ### antigen
 
-```sh
+```console
 $ antigen bundle caarlos0/zsh-git-sync
 ```
 
 ## Usage
 
-```sh
+```console
 $ git-sync
 ```
 
 Or, go ahead and alias it:
 
-```sh
+```console
 $ git config --global alias.sync '!zsh -ic git-sync'
 ```
 
 Then
 
-```sh
+```console
 $ git sync
 ```
 
@@ -48,13 +48,13 @@ locally merged branches (part of the cleanup thing).
 
 Example:
 
-```sh
+```console
 $ git config --global alias.delete-local-merged '!zsh -ic git-delete-local-merged'
 ```
 
 Then
 
-```sh
+```console
 $ git delete-local-merged
 ```
 
