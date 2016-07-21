@@ -22,7 +22,7 @@ _merge_locally() {
   branch="$2"
   _log "Merging $remote/$branch locally..."
   git fetch "$remote" | _prefixed
-  git merge "$remote/$branch" | _prefixed
+  git merge --no-edit "$remote/$branch" | _prefixed
 }
 
 _push_to_fork() {
