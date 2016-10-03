@@ -1,8 +1,8 @@
-# git-sync [![Build Status](https://travis-ci.org/caarlos0/git-sync.svg?branch=master)](https://travis-ci.org/caarlos0/git-sync)
+# git-sync [![Build Status](https://travis-ci.org/caarlos0/zsh-git-sync.svg?branch=master)](https://travis-ci.org/caarlos0/zsh-git-sync)
 
 Sync git repositories and clean them up.
 
-![a gif showing git-sync in action](https://dl.dropboxusercontent.com/u/247142/projects/git-sync.mov.gif)
+![a gif showing git-sync in action](/git-sync.mov.gif)
 
 ## Define `sync`
 
