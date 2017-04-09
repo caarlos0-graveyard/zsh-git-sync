@@ -17,7 +17,7 @@ Sync git repositories and clean them up.
 $ antibody bundle 'caarlos0/git-sync kind:path'
 ```
 
-Or use `antigen` to load it a shell plugin.
+Or use `antigen` to load it as a shell plugin.
 
 ## Usage
 
