@@ -14,7 +14,7 @@ Sync git repositories and clean them up.
 ## Install
 
 ```console
-$ antibody bundle 'caarlos0/git-sync kind:path'
+$ antibody bundle 'caarlos0/zsh-git-sync kind:path'
 ```
 
 Or use `antigen` to load it as a shell plugin.
