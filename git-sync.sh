@@ -43,17 +43,14 @@ git-delete-local-merged() {
   _log "Removing merged branches..."
   branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
   [ -n "$branches" ] && echo "$branches" | xargs git branch -d
-}
 
-# shellcheck disable=SC2039
-git-delete-local-squashed() {
-	_log "Removing squashed and merged branches..."
-	git for-each-ref refs/heads/ "--format=%(refname:short)" | while read -r branch; do
-		base="$(git merge-base master "$branch")"
-		hash="$(git rev-parse "$branch^{tree}")"
-		commit="$(git commit-tree "$hash" -p "$base" -m _)"
-		[[ $(git cherry master "$commit") == "-"* ]] && git branch -D "$branch"
-	done
+  _log "Removing squashed and merged branches..."
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read -r branch; do
+    base="$(git merge-base master "$branch")"
+    hash="$(git rev-parse "$branch^{tree}")"
+    commit="$(git commit-tree "$hash" -p "$base" -m _)"
+    [[ $(git cherry master "$commit") == "-"* ]] && git branch -D "$branch"
+  done
 }
 
 # shellcheck disable=SC2039
@@ -67,6 +64,5 @@ git-sync() {
   _push_to_fork "$remote" "$branch"
   git branch -u "$remote/$branch"
   git-delete-local-merged
-  git-delete-local-squashed
   _log "All done!"
 }
