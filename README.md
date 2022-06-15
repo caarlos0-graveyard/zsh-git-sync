@@ -19,6 +19,14 @@ $ antibody bundle 'caarlos0/zsh-git-sync kind:path'
 
 Or use `antigen` to load it as a shell plugin.
 
+## Fig
+
+[Fig](https://fig.io) adds apps, shortcuts, and autocomplete to your existing terminal.
+
+Install `zsh-git-sync` in just one click.
+
+<a href="https://fig.io/plugins/other/zsh-git-sync_caarlos0-graveyard" target="_blank"><img src="https://fig.io/badges/install-with-fig.svg" /></a>
+
 ## Usage
 
 If you used antibody, the folder will be cloned and added to your `$PATH`,
