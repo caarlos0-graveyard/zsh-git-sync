@@ -38,18 +38,19 @@ _push_to_fork() {
 
 # shellcheck disable=SC2039
 git-delete-local-merged() {
+  main_branch=$(basename "$(git symbolic-ref --short refs/remotes/origin/HEAD)")
   # shellcheck disable=SC2039
   local branches
   _log "Removing merged branches..."
-  branches="$(git branch --merged | grep -v "^\*" | grep -v 'master' | tr -d '\n')"
+  branches="$(git branch --merged | grep -v "^\*" | grep -v "$main_branch" | tr -d '\n')"
   [ -n "$branches" ] && echo "$branches" | xargs git branch -d
 
   _log "Removing squashed and merged branches..."
   git for-each-ref refs/heads/ "--format=%(refname:short)" | while read -r branch; do
-    base="$(git merge-base master "$branch")"
+    base="$(git merge-base "$main_branch" "$branch")"
     hash="$(git rev-parse "$branch^{tree}")"
     commit="$(git commit-tree "$hash" -p "$base" -m _)"
-    [[ $(git cherry master "$commit") == "-"* ]] && git branch -D "$branch"
+    [[ $(git cherry "$main_branch" "$commit") == "-"* ]] && git branch -D "$branch"
   done
 }
 
